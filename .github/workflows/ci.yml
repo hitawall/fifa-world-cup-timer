@@ -1,4 +1,3 @@
-# Customize this file for your stack. Uncomment and adapt the relevant section.
 name: CI
 
 on:
@@ -13,31 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # --- Node.js / TypeScript ---
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      #     cache: pnpm
-      # - run: pnpm install --frozen-lockfile
-      # - run: pnpm lint
-      # - run: pnpm test
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
 
-      # --- Python ---
-      # - uses: actions/setup-python@v5
-      #   with:
-      #     python-version: "3.12"
-      # - run: pip install -r requirements.txt
-      # - run: pytest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
-      # --- Go ---
-      # - uses: actions/setup-go@v5
-      #   with:
-      #     go-version: stable
-      # - run: go test ./...
+      - run: pnpm install --frozen-lockfile
 
-      # --- Rust ---
-      # - uses: dtolnay/rust-toolchain@stable
-      # - run: cargo test
+      - run: pnpm lint
 
-      - name: Placeholder — configure your stack above, then remove this step
-        run: echo "CI not yet configured. See .github/workflows/ci.yml."
+      - run: pnpm type-check
+
+      - run: pnpm test
+
+      - run: pnpm build

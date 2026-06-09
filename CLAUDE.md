@@ -22,6 +22,15 @@
 - Remove all debug artifacts before opening a PR.
 - Justify any new dependency in the PR body.
 
+## Local commands
+- `pnpm dev` — start dev server at http://localhost:3000 (Turbopack)
+- `pnpm build` — production build
+- `pnpm start` — start production server
+- `pnpm test` — jest unit tests
+- `pnpm test:watch` — jest in watch mode
+- `pnpm lint` — eslint
+- `pnpm type-check` — tsc --noEmit
+
 ## Token efficiency (inherits from global — key reminders)
 - Prefer `gh` CLI over MCP for all GitHub operations.
 - Read file sections with offset/limit, not whole files.

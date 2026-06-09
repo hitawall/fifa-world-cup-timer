@@ -1,0 +1,54 @@
+{
+  "name": "fifa-world-cup-timer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "framer-motion": "^11.18.2",
+    "date-fns": "^4.1.0",
+    "canvas-confetti": "^1.9.3",
+    "howler": "^2.2.4",
+    "html2canvas": "^1.4.1",
+    "react-share": "^5.1.0",
+    "qrcode.react": "^4.2.0",
+    "react-simple-maps": "^3.0.0",
+    "topojson-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/howler": "^2.2.11",
+    "@types/canvas-confetti": "^1.6.4",
+    "@types/topojson-client": "^3.1.4",
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4",
+    "postcss": "^8",
+    "eslint": "^9",
+    "eslint-config-next": "^15.3.3",
+    "jest": "^29",
+    "jest-environment-jsdom": "^29",
+    "ts-jest": "^29",
+    "@testing-library/react": "^16",
+    "@testing-library/jest-dom": "^6",
+    "@types/jest": "^29"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ]
+  }
+}
