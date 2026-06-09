@@ -1,19 +1,32 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { CountdownTimer } from '@/components/countdown/CountdownTimer'
 import { VisitorTracker } from '@/components/visitor-tracker/VisitorTracker'
+import { ShareModal } from '@/components/sharing/ShareModal'
 import { FloatingElements } from '@/components/ui/FloatingElements'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { SoundToggle } from '@/components/ui/SoundToggle'
+import { useGeolocation } from '@/hooks/useGeolocation'
+import { useVisitorData } from '@/hooks/useVisitorData'
+import { trackReferral } from '@/lib/share'
 
 export default function HomePage() {
   const [shareOpen, setShareOpen] = useState(false)
   const trackerRef = useRef<HTMLDivElement>(null)
 
+  const { country: userCountry } = useGeolocation()
+  const data = useVisitorData(userCountry)
+
+  useEffect(() => {
+    trackReferral()
+  }, [])
+
   const scrollToTracker = () => {
     trackerRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const visitorsFromCountry = userCountry ? data.countries[userCountry] : undefined
 
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -42,7 +55,10 @@ export default function HomePage() {
       </div>
 
       {/* Hero / Countdown section */}
-      <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20 gap-10">
+      <section
+        id="countdown-hero"
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-20 gap-10"
+      >
         <CountdownTimer
           onShareOpen={() => setShareOpen(true)}
           onTrackerOpen={scrollToTracker}
@@ -120,57 +136,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Share modal placeholder (filled in Phase 4) */}
-      {shareOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ background: 'rgba(0,0,0,0.7)' }}
-          onClick={() => setShareOpen(false)}
-        >
-          <div
-            className="rounded-2xl p-6 w-full max-w-sm"
-            style={{ background: 'var(--card)', border: '1px solid var(--card-border)' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--fg)' }}>
-              Share the Countdown
-            </h2>
-            <p className="text-sm mb-4" style={{ color: 'var(--muted)' }}>
-              Full sharing features coming in Phase 4!
-            </p>
-            <div className="flex gap-3 flex-wrap mb-4">
-              {['🐦 Twitter', '📘 Facebook', '💬 WhatsApp', '📱 Share'].map((btn) => (
-                <button
-                  key={btn}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium"
-                  style={{
-                    background: 'var(--color-fifa-navy)',
-                    color: 'var(--color-fifa-gold)',
-                    border: '1px solid var(--color-fifa-gold)',
-                  }}
-                  onClick={() => {
-                    const text = `Only ${Math.ceil((new Date('2026-06-12T20:00:00Z').getTime() - Date.now()) / 86400000)} days until the World Cup! ⚽🌍`
-                    if (navigator.share && btn.includes('Share')) {
-                      navigator.share({ text, url: window.location.href })
-                    } else if (typeof window !== 'undefined') {
-                      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank')
-                    }
-                  }}
-                >
-                  {btn}
-                </button>
-              ))}
-            </div>
-            <button
-              onClick={() => setShareOpen(false)}
-              className="w-full py-2 rounded-lg font-semibold text-sm"
-              style={{ background: 'var(--color-fifa-gold)', color: 'var(--color-fifa-navy)' }}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Share modal */}
+      <ShareModal
+        isOpen={shareOpen}
+        onClose={() => setShareOpen(false)}
+        userCountry={userCountry}
+        visitorsFromCountry={visitorsFromCountry}
+        totalVisitors={data.total}
+      />
 
       {/* Background gradient */}
       <div
