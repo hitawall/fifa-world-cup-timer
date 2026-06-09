@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fifa-navy: #003087;
+  --color-fifa-gold: #FFD700;
+  --color-fifa-white: #FFFFFF;
+  --color-surface-dark: #0A0F1E;
+  --color-surface-light: #F0F4FF;
+  --color-surface-dark-2: #111827;
+
+  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+  --font-mono: var(--font-geist-mono, ui-monospace, monospace);
+}
+
+/* Dark mode custom properties */
+:root {
+  --bg: var(--color-surface-light);
+  --fg: var(--color-fifa-navy);
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --muted: #64748b;
+}
+
+.dark {
+  --bg: var(--color-surface-dark);
+  --fg: var(--color-fifa-white);
+  --card: var(--color-surface-dark-2);
+  --card-border: #1e293b;
+  --muted: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Reduced motion: disable all transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Digit flip 3D perspective wrapper */
+.digit-perspective {
+  perspective: 400px;
+  transform-style: preserve-3d;
+}
+
+/* Focus visible ring in FIFA gold */
+*:focus-visible {
+  outline: 2px solid var(--color-fifa-gold);
+  outline-offset: 2px;
+}

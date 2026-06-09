@@ -36,3 +36,19 @@ coverage/
 # Temp
 *.tmp
 *.bak
+
+# Next.js
+next-env.d.ts
+.next/
+out/
+tsconfig.tsbuildinfo
+
+# pnpm
+.pnpm-store/
+
+# Testing
+coverage/
+.jest-cache/
+
+# Vercel
+.vercel
