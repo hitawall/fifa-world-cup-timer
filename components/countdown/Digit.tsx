@@ -30,7 +30,7 @@ export function Digit({ value, size = 'xl', glowing = false }: DigitProps) {
 
   return (
     <div
-      className="digit-perspective relative inline-block w-[0.6em] overflow-hidden"
+      className={`digit-perspective relative inline-block w-[0.6em] overflow-hidden ${sizeClasses}`}
       style={{
         filter: glowing
           ? 'drop-shadow(0 0 20px #FFD700) drop-shadow(0 0 40px #FFD700aa)'
@@ -45,7 +45,7 @@ export function Digit({ value, size = 'xl', glowing = false }: DigitProps) {
           animate="center"
           exit="exit"
           transition={{ duration: 0.15, ease: 'easeInOut' }}
-          className={`${sizeClasses} font-bold tabular-nums leading-none block text-center`}
+          className="font-bold tabular-nums leading-none block text-center"
           style={{ color: 'var(--color-fifa-gold)' }}
           aria-hidden="true"
         >
