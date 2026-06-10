@@ -88,9 +88,9 @@ export function CountdownTimer({ compact = false, onShareOpen, onTrackerOpen }: 
         {/* Main countdown digits */}
         <button
           onClick={celebrate}
-          className="group flex items-center gap-4 sm:gap-8 cursor-pointer rounded-2xl p-4 sm:p-6 transition-all hover:scale-[1.02]"
+          className="group flex items-center gap-4 sm:gap-8 cursor-pointer rounded-2xl p-4 sm:p-6 shadow-xl transition-all hover:scale-[1.02]"
           aria-label="Click to celebrate — triggers confetti burst"
-          style={{ background: 'transparent' }}
+          style={{ background: 'var(--color-fifa-navy)' }}
         >
           <output
             className="flex items-center gap-4 sm:gap-8"

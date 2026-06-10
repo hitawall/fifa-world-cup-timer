@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://wc26timer.com'
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fifa-world-cup-timer.vercel.app'
   ),
   title: 'FIFA World Cup 2026 Countdown',
   description:
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FIFA World Cup 2026 Countdown',
     description: 'The World Cup is almost here. Watch the countdown live.',
-    url: 'https://wc26timer.com',
+    url: 'https://fifa-world-cup-timer.vercel.app',
     siteName: 'WC26 Countdown',
     images: [{ url: '/api/og', width: 1200, height: 630, alt: 'FIFA World Cup 2026 Countdown' }],
     type: 'website',
