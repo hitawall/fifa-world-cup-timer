@@ -104,7 +104,7 @@ export function GET(req: NextRequest) {
 
         {/* URL watermark */}
         <div style={{ position: 'absolute', bottom: 20, right: 24, color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>
-          wc26timer.com
+          {(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fifa-world-cup-timer.vercel.app').replace(/^https?:\/\//, '')}
         </div>
       </div>
     ),
